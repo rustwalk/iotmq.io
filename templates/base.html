@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+<main>
+    {% block content %}
+    {% endblock content %}
+</main>
+
+<footer class="footer footer-center sm:footer-horizontal">
+    <aside>
+        <p>Copyright © 2019-{{ now() | date(format="%Y") }} MHIoT Inc. All rights reserved</p>
+    </aside>
+</footer>
+</body>
+</html>
