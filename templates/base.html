@@ -6,7 +6,7 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.title }}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-    <link rel="stylesheet" href="/static/app.css" />
+    <link rel="stylesheet" href="{{ get_url(path='static/app.css', cachebust=true) }}" />
 </head>
 <body>
 <main>
