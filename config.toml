@@ -1,0 +1,13 @@
+base_url = "https://iotmq.io"
+title = "IoTMQ"
+description = "高性能纯 Rust MQTT 消息服务器"
+default_language = "en"
+
+[languages.zh]
+title = "IoTMQ 官方文档"
+
+[languages.zh.translations]
+
+[languages.en.translations]
+
+[extra]

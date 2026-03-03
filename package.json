@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "css": "npx @tailwindcss/cli -i src/app.css -o ./static/app.css --watch --minify",
+    "js": "esbuild ./src/app.js --outdir=./static --format=iife --bundle --watch --minify"
+  },
+  "devDependencies": {
+    "daisyui": "^5.5.19",
+    "tailwindcss": "^4.2.1"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1"
+  }
+}
