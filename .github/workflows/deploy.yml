@@ -1,0 +1,36 @@
+name: Deploy iotmq.io to GitHub Pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install zola
+        uses: taiki-e/install-action@v2
+        with:
+          tool: zola
+
+      - name: build
+        run: zola build
+
+      - name: upload
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

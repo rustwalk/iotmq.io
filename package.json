@@ -1,9 +1,12 @@
 {
   "scripts": {
-    "css": "npx @tailwindcss/cli -i src/app.css -o ./static/app.css --watch --minify",
-    "js": "esbuild ./src/app.js --outdir=./static --format=iife --bundle --watch --minify"
+    "dev:css": "npx @tailwindcss/cli -i src/app.css -o ./static/static/app.css --watch --minify",
+    "build:css": "npx @tailwindcss/cli -i src/app.css -o ./static/static/app.css --minify",
+    "dev": "concurrently \"npm run dev:css\" \"zola serve\"",
+    "build": "npm run build:css && zola build"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.1"
   },
