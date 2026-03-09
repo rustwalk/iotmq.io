@@ -19,4 +19,5 @@ light_theme = "github-light"
 dark_theme = "github-dark"
 
 [extra]
+is_dev = true
 versions = []

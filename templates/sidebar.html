@@ -2,13 +2,15 @@
 {% set section = get_section(path=path) %}
 
 {% for page in section.pages %}
-<li>{{ page.title }}{{ page.permalink | trim_end_matches(pat='/') }}</li>
+{% set url1 = page.permalink | trim_end_matches(pat="/") %}
+{% set url = url1 ~ ".html" %}
+<li class="{% if page.permalink == current %}bg-purple-500{% endif %}"><a href="{{ page.permalink | trim_end_matches(pat="/") }}.html">{{ page.title }}{{ page.permalink | trim_end_matches(pat="/") }}.html</a></li>
 {% endfor %}
 
 {% for subpath in section.subsections %}
 {% set subsection = get_section(path=subpath) %}
-<li>
-    {{ subsection.title }}{{ subsection.permalink | trim_end_matches(pat='/') }}
+<li class="{% if subsection.permalink == current %}bg-purple-500{% endif %}">
+    <a href="{{ subsection.permalink | trim_end_matches(pat='/') }}.html">{{ subsection.title }}{{ subsection.permalink | trim_end_matches(pat='/') }}.html</a>
     {{ self::menu(path=subpath, current=current) }}
 </li>
 {% endfor %}

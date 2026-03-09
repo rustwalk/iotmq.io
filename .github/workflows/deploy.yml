@@ -26,10 +26,10 @@ jobs:
           tool: zola
 
       - name: build
-        run: zola build
-
-      - name: html
-        run: bash ./html.sh
+        run: |
+          sed -i 's/is_dev = true/is_dev = false/g' config.toml
+          zola build
+          bash ./html.sh
 
       - name: upload
         uses: actions/upload-pages-artifact@v3
