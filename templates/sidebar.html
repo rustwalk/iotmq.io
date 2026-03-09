@@ -1,0 +1,16 @@
+{% macro menu(path, current) %}
+{% set section = get_section(path=path) %}
+
+{% for page in section.pages %}
+<li>{{ page.title }}{{ page.permalink | trim_end(pat="/") }}</li>
+{% endfor %}
+
+{% for subpath in section.subsections %}
+{% set subsection = get_section(path=subpath) %}
+<li>
+    {{ subsection.title }}{{ subsection.permalink | trim_end(pat="/") }}
+    {{ self::menu(path=subpath, current=current) }}
+</li>
+{% endfor %}
+
+{% endmacro %}

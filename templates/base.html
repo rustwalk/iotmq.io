@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-    <link rel="stylesheet" href="{{ get_url(path='static/app.css', cachebust=true) }}" />
+    <meta name="description"
+          content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
+    <link rel="stylesheet" href="{{ get_url(path='static/app.css', cachebust=true) }}"/>
 </head>
 <body class="min-h-screen flex flex-col">
 <header class="navbar bg-base-100/80 backdrop-blur px-5 border-b border-base-300 fixed h-12 min-h-12 z-50">
     <div class="navbar-start">
-        <a href="/" class="flex items-center gap-2 group">
-            <img src="/static/logo.png" class="w-8 h-8 group-hover:rotate-12 transition-transform" alt="{{ config.title }}"/>
+        <a href="{{ get_url(path='/', lang=lang) }}" class="flex items-center gap-2 group">
+            <img src="/static/logo.png" class="w-8 h-8 group-hover:rotate-12 transition-transform"
+                 alt="{{ config.title }}"/>
             <span class="text-lg font-semibold hidden sm:inline-block">IoTMQ</span>
         </a>
     </div>
-    <div class="navbar-end">语言</div>
+    <div class="navbar-end">
+        {% if section and section.translations %}
+        {% for t in section.translations %}
+        <a href="{{ t.permalink }}">{{ t.lang }}</a>
+        {% endfor %}
+        {% endif %}
+    </div>
 </header>
 <div class="h-12"></div>
 <main class="flex justify-center">

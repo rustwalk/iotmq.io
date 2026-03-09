@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% import "sidebar.html" as sidebar %}
+
+{% block content %}
+
+{% set parts = page.components %}
+{% set version = parts[0] ~ "/" ~ parts[1] ~ "/_index.md" %}
+{% set root = get_section(path=version) %}
+<aside class="hidden lg:block w-100 shrink-0 sticky overflow-y-auto pr-4 border-r border-base-200">
+    <ul>
+        <li>{{ root.title }}{{ root.permalink }}</li>
+        {{ sidebar::menu(path=version, current=page.permalink) }}
+    </ul>
+</aside>
+<div class="prose max-w-none lg:prose-lg p-10 prose-a:text-primary prose-a:no-underline flex-1">{{ page.content | safe
+    }}
+</div>
+
+{% endblock content %}
