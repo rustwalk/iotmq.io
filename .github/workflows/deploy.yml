@@ -45,7 +45,7 @@ jobs:
             fi
 
             mv -f "$index_file" "${parent_dir}/${base_name}.html"
-            rmdir "$dir" 2>/dev/null
+            rmdir "$dir"
           done
 
       - name: upload
