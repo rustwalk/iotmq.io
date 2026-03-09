@@ -4,16 +4,23 @@
 {% block content %}
 
 {% set parts = page.components %}
+{% if parts[0] == "docs" %}
 {% set version = parts[0] ~ "/" ~ parts[1] ~ "/_index.md" %}
-{% set root = get_section(path=version) %}
+{% else %}
+{% set version = parts[1] ~ "/" ~ parts[2] ~ "/_index.md" %}
+{% endif %}
+{% set root = get_section(path=version, lang = page.lang) %}
+
 <aside class="hidden lg:block w-100 shrink-0 sticky overflow-y-auto pr-4 border-r border-base-200">
     <ul>
-        <li>{{ root.title }}{{ root.permalink | trim_end_matches(pat='/') }}</li>
-        {{ sidebar::menu(path=version, current=page.permalink) }}
+        <li>
+            <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
+        </li>
+        {{ sidebar::menu(path=version, current=page.permalink, lang = page.lang) }}
     </ul>
 </aside>
-<div class="prose max-w-none lg:prose-lg p-10 prose-a:text-primary prose-a:no-underline flex-1">{{ page.content | safe
-    }}
+<div class="prose max-w-none lg:prose-lg p-10 prose-a:text-primary prose-a:no-underline flex-1">
+    {{ page.content | safe }}
 </div>
 
 {% endblock content %}

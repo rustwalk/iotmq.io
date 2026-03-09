@@ -1,17 +1,21 @@
-{% macro menu(path, current) %}
-{% set section = get_section(path=path) %}
+{% macro menu(path, current, lang) %}
+{% set section = get_section(path=path, lang=lang) %}
 
 {% for page in section.pages %}
 {% set url1 = page.permalink | trim_end_matches(pat="/") %}
 {% set url = url1 ~ ".html" %}
-<li class="{% if page.permalink == current %}bg-purple-500{% endif %}"><a href="{{ page.permalink | trim_end_matches(pat="/") }}.html">{{ page.title }}{{ page.permalink | trim_end_matches(pat="/") }}.html</a></li>
+<li class="{% if page.permalink == current %}bg-purple-500{% endif %}">
+    <a href="{{ page.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}">{{
+        page.title }}</a>
+</li>
 {% endfor %}
 
 {% for subpath in section.subsections %}
-{% set subsection = get_section(path=subpath) %}
+{% set subsection = get_section(path=subpath, lang=lang) %}
 <li class="{% if subsection.permalink == current %}bg-purple-500{% endif %}">
-    <a href="{{ subsection.permalink | trim_end_matches(pat='/') }}.html">{{ subsection.title }}{{ subsection.permalink | trim_end_matches(pat='/') }}.html</a>
-    {{ self::menu(path=subpath, current=current) }}
+    <a href="{{ subsection.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}">{{
+        subsection.title }}</a>
+    {{ self::menu(path=subpath, current=current, lang=lang) }}
 </li>
 {% endfor %}
 
