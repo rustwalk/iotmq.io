@@ -11,16 +11,18 @@
 {% endif %}
 {% set root = get_section(path=version, lang = page.lang) %}
 
-<aside class="hidden lg:block w-100 shrink-0 sticky overflow-y-auto pr-4 border-r border-base-200">
-    <ul>
-        <li>
-            <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
-        </li>
-        {{ sidebar::menu(path=version, current=page.permalink, lang = page.lang) }}
-    </ul>
-</aside>
-<div class="prose max-w-none lg:prose-lg p-10 prose-a:text-primary prose-a:no-underline flex-1">
-    {{ page.content | safe }}
+<div class="flex h-[calc(100vh-3rem)] overflow-hidden">
+    <aside class="hidden lg:block w-80 px-5 shrink-0 overflow-y-auto border-r border-base-200">
+        <ul class="menu w-full">
+            <li>
+                <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
+            </li>
+            {{ sidebar::render(path=version, current=page.permalink, lang = page.lang) }}
+        </ul>
+    </aside>
+    <div class="flex-1 max-w-none py-10 px-20 overflow-y-auto prose lg:prose-lg prose-a:text-primary prose-a:no-underline">
+        {{ page.content | safe }}
+    </div>
 </div>
 
 {% endblock content %}

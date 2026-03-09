@@ -4,4 +4,9 @@
 <div class="py-10">
     <button class="btn btn-primary">Welcome to IoTMQ {{ lang }}</button>
 </div>
+<footer class="footer footer-center sm:footer-horizontal bg-base-300 py-6">
+    <aside>
+        <p>Copyright © 2019-{{ now() | date(format="%Y") }} MHIoT Inc. All rights reserved</p>
+    </aside>
+</footer>
 {% endblock content %}

@@ -11,12 +11,12 @@
 {% endif %}
 {% set root = get_section(path=version, lang = section.lang) %}
 
-<aside class="hidden lg:block w-200 shrink-0 sticky overflow-y-auto pr-4 border-r border-base-200">
-    <ul>
+<aside class="hidden lg:block w-50 shrink-0 sticky overflow-y-auto border-r border-base-200">
+    <ul class="menu w-full">
         <li class="{% if root.permalink == section.permalink%}bg-purple-500{% endif %}">
             <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
         </li>
-        {{ sidebar::menu(path=version, current=section.permalink, lang = section.lang) }}
+        {{ sidebar::render(path=version, current=section.permalink, lang = section.lang) }}
     </ul>
 </aside>
 <div class="prose max-w-none lg:prose-lg p-10 prose-a:text-primary prose-a:no-underline flex-1">
