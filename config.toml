@@ -1,6 +1,9 @@
 base_url = "https://iotmq.io"
 default_language = "en"
 
+[slugify]
+paths = "on"
+
 [languages.en]
 title = "IoTMQ"
 description = "Rust MQTT"
