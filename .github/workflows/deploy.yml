@@ -44,9 +44,9 @@ jobs:
               continue
             fi
 
-            mv "$index_file" "${parent_dir}/${base_name}.html"
+            mv -f "$index_file" "${parent_dir}/${base_name}.html"
             rmdir "$dir" 2>/dev/null
-            done
+          done
 
       - name: upload
         uses: actions/upload-pages-artifact@v3
