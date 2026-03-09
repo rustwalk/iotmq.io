@@ -44,6 +44,7 @@ jobs:
               continue
             fi
 
+            echo "$index_file"
             mv -f "$index_file" "${parent_dir}/${base_name}.html"
             rmdir "$dir"
           done
