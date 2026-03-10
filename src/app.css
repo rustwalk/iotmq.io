@@ -4,3 +4,9 @@
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
 }
+
+@layer components {
+    .menu-a {
+        @apply hover:bg-transparent! focus:bg-transparent! active:bg-transparent! transition-colors! tracking-wider!;
+    }
+}
