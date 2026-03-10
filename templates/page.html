@@ -3,13 +3,14 @@
 
 {% block content %}
 
-{% set parts = page.components %}
+{% set obj = page | default(value=section) %}
+{% set parts = obj.components %}
 {% if parts[0] == "docs" %}
 {% set version = parts[0] ~ "/" ~ parts[1] ~ "/_index.md" %}
 {% else %}
 {% set version = parts[1] ~ "/" ~ parts[2] ~ "/_index.md" %}
 {% endif %}
-{% set root = get_section(path=version, lang = page.lang) %}
+{% set root = get_section(path=version, lang = obj.lang) %}
 
 <div class="flex h-screen overflow-hidden">
     <aside class="hidden lg:block w-80 px-5 pt-12 shrink-0 overflow-y-auto border-r border-base-200">
@@ -17,13 +18,13 @@
             <li>
                 <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
             </li>
-            {{ sidebar::render(path=version, current=page.permalink, lang = page.lang) }}
+            {{ sidebar::render(path=version, current=obj.permalink, lang = obj.lang) }}
         </ul>
     </aside>
     <div class="flex-1 mt-12 overflow-y-auto">
         <article
                 class="max-w-4xl mx-auto py-10 px-5 lg:px-20 prose lg:prose-lg prose-a:text-primary prose-a:no-underline">
-            {{ page.content | safe }}
+            {{ obj.content | safe }}
         </article>
     </div>
 </div>
