@@ -5,6 +5,15 @@
     themes: light --default, dark --prefersdark;
 }
 
+@theme {
+    /*--font-sans: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;*/
+    /*--default-font-family: var(--font-sans);*/
+    /*--font-family-sans: var(--font-sans);*/
+}
+
+@layer base {
+}
+
 @layer components {
     .menu-a {
         @apply hover:bg-transparent! focus:bg-transparent! active:bg-transparent! transition-colors! tracking-wider!;

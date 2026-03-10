@@ -4,7 +4,7 @@
 {% for page in section.pages %}
 <li>
     <a href="{{ page.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}"
-       class="menu-a hover:text-primary{% if page.permalink == current %} text-primary font-bold{% endif %}">
+       class="menu-a hover:text-primary{% if page.permalink == current %} text-primary{% endif %}">
         {{ page.title }}
     </a>
 </li>

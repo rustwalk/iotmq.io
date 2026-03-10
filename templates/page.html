@@ -13,7 +13,7 @@
 {% set root = get_section(path=version, lang = obj.lang) %}
 
 <div class="flex h-screen overflow-hidden">
-    <aside class="hidden lg:block w-60 px-5 pt-16 shrink-0 overflow-y-auto border-r border-base-200">
+    <aside class="hidden lg:block flex-none px-5 pt-16 shrink-0 overflow-y-auto border-r border-base-200">
         <ul class="menu w-full">
             <li>
                 <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}"
