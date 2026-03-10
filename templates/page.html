@@ -11,8 +11,8 @@
 {% endif %}
 {% set root = get_section(path=version, lang = page.lang) %}
 
-<div class="flex h-[calc(100vh-3rem)] overflow-hidden">
-    <aside class="hidden lg:block w-80 px-5 shrink-0 overflow-y-auto border-r border-base-200">
+<div class="flex h-screen overflow-hidden">
+    <aside class="hidden lg:block w-80 px-5 pt-12 shrink-0 overflow-y-auto border-r border-base-200">
         <ul class="menu w-full">
             <li>
                 <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}">{{ root.title }}</a>
@@ -20,8 +20,11 @@
             {{ sidebar::render(path=version, current=page.permalink, lang = page.lang) }}
         </ul>
     </aside>
-    <div class="flex-1 max-w-none py-10 px-20 overflow-y-auto prose lg:prose-lg prose-a:text-primary prose-a:no-underline">
-        {{ page.content | safe }}
+    <div class="flex-1 mt-12 overflow-y-auto">
+        <article
+                class="max-w-4xl mx-auto py-10 px-5 lg:px-20 prose lg:prose-lg prose-a:text-primary prose-a:no-underline">
+            {{ page.content | safe }}
+        </article>
     </div>
 </div>
 
