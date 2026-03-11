@@ -20,17 +20,9 @@
     .menu li > :where(*:not(ul)):active,
     .menu li > :where(*:not(ul)).active {
         background: transparent none !important;
-        /* 既然去掉了背景，我们用文字颜色和加粗来做交互反馈 */
-        color: var(--color-primary) !important;
-        --tw-text-opacity: 1 !important;
-        outline: none !important;
-        box-shadow: none !important;
-    }
-
-    .menu-a, .menu li a {
-        -webkit-tap-highlight-color: transparent !important;
-        outline: none !important;
-        -webkit-appearance: none;
-        @apply hover:bg-transparent! focus:bg-transparent! active:bg-transparent! transition-colors! tracking-wide!;
+        /*color: var(--color-primary) !important;*/
+        /*--tw-text-opacity: 1 !important;*/
+        /*outline: none !important;*/
+        /*box-shadow: none !important;*/
     }
 }
