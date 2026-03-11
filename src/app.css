@@ -16,6 +16,9 @@
 
 @layer components {
     .menu-a {
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+        -webkit-appearance: none;
         @apply hover:bg-transparent! focus:bg-transparent! active:bg-transparent! transition-colors! tracking-wide!;
     }
 }
