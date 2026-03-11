@@ -13,11 +13,11 @@
 {% set root = get_section(path=version, lang = obj.lang) %}
 
 <div class="flex h-screen overflow-hidden">
-    <aside class="hidden lg:block flex-none px-5 pt-16 shrink-0 overflow-y-auto border-r border-base-content/5 bg-base-200/50">
+    <aside class="hidden lg:block w-60 px-5 pt-16 shrink-0 overflow-y-auto border-r border-base-content/5 bg-base-300/50">
         <ul class="menu w-full">
             <li>
                 <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}"
-                   class="menu-a hover:text-primary pl-0{% if root.permalink == obj.permalink %} text-primary font-bold{% endif %}">
+                   class="menu-a hover:text-primary pl-0 font-medium{% if root.permalink == obj.permalink %} text-primary{% endif %}">
                     {{ root.title }}
                 </a>
             </li>
