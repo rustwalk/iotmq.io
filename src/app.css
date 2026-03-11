@@ -20,9 +20,9 @@
     .menu li > :where(*:not(ul)):active,
     .menu li > :where(*:not(ul)).active {
         background: transparent none !important;
-        /*color: var(--color-primary) !important;*/
-        /*--tw-text-opacity: 1 !important;*/
-        /*outline: none !important;*/
-        /*box-shadow: none !important;*/
+        color: var(--color-primary) !important;
+        --tw-text-opacity: 1 !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
 }
