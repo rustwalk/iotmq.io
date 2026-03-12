@@ -17,18 +17,33 @@
         <ul class="menu w-full">
             <li>
                 <a href="{{ root.permalink | trim_end_matches(pat='/') | safe }}"
-                   class="menu-a hover:text-primary pl-0 font-medium{% if root.permalink == obj.permalink %} text-primary{% endif %}">
+                   class="hover:text-primary pl-0 font-medium{% if root.permalink == obj.permalink %} text-primary{% endif %}">
                     {{ root.title }}
                 </a>
             </li>
             {{ sidebar::render(path=version, current=obj.permalink, lang = obj.lang) }}
         </ul>
     </aside>
-    <div class="flex-1 mt-12 overflow-y-auto">
+    <div class="flex flex-1 mt-12 overflow-y-auto">
         <article
-                class="max-w-4xl mx-auto py-5 lg:py-10 px-5 lg:px-20 prose lg:prose-md prose-a:text-primary prose-a:no-underline">
+                class="flex-1 max-w-4xl mx-auto py-5 lg:py-10 px-5 lg:px-20 prose lg:prose-md prose-a:text-primary prose-a:no-underline">
             {{ obj.content | safe }}
         </article>
+        {% if obj.toc | length > 1 %}
+        <aside class="hidden xl:block w-64 sticky top-20 h-fit py-8">
+            <ul class="text-[14px] border-l border-base-content/10 pl-4">
+                <li class="uppercase text-base-content/80 font-bold py-2">{{ trans(key="toc",
+                    lang=obj.lang) }}
+                </li>
+                {% for t1 in obj.toc %}
+                <li class="py-2 text-base-content/60">
+                    <a href="#{{ t1.id | safe }}" class="toc-link pl-0 block hover:text-primary">{{ t1.title
+                        }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        {% endif %}
     </div>
 </div>
 

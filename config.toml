@@ -11,8 +11,10 @@ description = "高性能纯 Rust MQTT 消息服务器"
 build_search_index = true
 
 [languages.zh.translations]
+toc = "本页目录"
 
 [languages.en.translations]
+toc = "on this page"
 
 [markdown.highlighting]
 light_theme = "github-light"

@@ -1,14 +1,17 @@
 {
   "scripts": {
-    "dev:css": "npx @tailwindcss/cli -i src/app.css -o ./static/static/app.css --watch --minify",
+    "watch:css": "npx @tailwindcss/cli -i src/app.css -o ./static/static/app.css --watch --minify",
+    "watch:js": "esbuild ./src/app.js --outfile=./static/static/app.js --format=iife --bundle --watch --minify",
+    "build:js": "esbuild ./src/app.js --outfile=./static/static/app.js --format=iife --bundle --minify",
     "build:css": "npx @tailwindcss/cli -i src/app.css -o ./static/static/app.css --minify",
-    "dev": "concurrently \"npm run dev:css\" \"zola serve\"",
-    "build": "npm run build:css && zola build"
+    "dev": "concurrently \"npm run watch:css\" \"npm run watch:js\" \"zola serve\"",
+    "build": "npm run build:css && npm run build:js && zola build"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
     "concurrently": "^9.2.1",
     "daisyui": "^5.5.19",
+    "esbuild": "^0.27.3",
     "tailwindcss": "^4.2.1"
   },
   "dependencies": {

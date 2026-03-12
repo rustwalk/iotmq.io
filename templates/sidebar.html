@@ -4,7 +4,7 @@
 {% for page in section.pages %}
 <li>
     <a href="{{ page.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}"
-       class="menu-a hover:text-primary pl-0 {% if level == 1 %}font-medium{% else %}text-base-content/60{% endif %}{% if page.permalink == current %} text-primary{% endif %}">
+       class="hover:text-primary pl-0 {% if level == 1 %}font-medium{% else %}text-base-content/60{% endif %}{% if page.permalink == current %} text-primary{% endif %}">
         {{ page.title }}
     </a>
 </li>
@@ -15,11 +15,11 @@
 <li class="mt-5 first:mt-0 pt-2 border-t border-base-content/5">
     {% if subsection.content | length > 0 %}
     <a href="{{ subsection.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}"
-       class="menu-a hover:text-primary pl-0 font-medium{% if subsection.permalink == current %} text-primary{% endif %}">
+       class="hover:text-primary pl-0 font-medium{% if subsection.permalink == current %} text-primary{% endif %}">
         {{ subsection.title }}
     </a>
     {% else %}
-    <span class="menu-a opacity-50 pl-0 pointer-events-none font-medium">{{ subsection.title }}</span>
+    <span class="pl-0 pointer-events-none font-medium">{{ subsection.title }}</span>
     {% endif %}
     <ul class="ml-1 pl-3">
         {{ self::render(path=subpath, current=current, lang=lang, level=level+1) }}

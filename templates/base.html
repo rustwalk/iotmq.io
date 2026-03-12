@@ -7,7 +7,9 @@
     <meta name="description"
           content="{% if page.description %}{{ page.description }}{% else %}{{ config.description }}{% endif %}">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
-    <link rel="stylesheet" href="{{ get_url(path='static/app.css', cachebust=true) }}"/>
+    <link rel="stylesheet" href="/static/app.css?h={{ get_hash(path='static/app.css') }}"/>
+    <script src="/static/zepto.js"></script>
+    <script src="/static/app.js?h={{ get_hash(path='static/app.js') }}"></script>
 </head>
 <body>
 <header class="navbar bg-base-100/80 backdrop-blur px-5 border-b border-base-300 fixed h-12 min-h-12 z-50">
