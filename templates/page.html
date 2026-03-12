@@ -24,7 +24,7 @@
             {{ sidebar::render(path=version, current=obj.permalink, lang = obj.lang) }}
         </ul>
     </aside>
-    <div class="flex flex-1 mt-12 overflow-y-auto">
+    <div class="flex flex-col xl:flex-row flex-1 mt-12 overflow-y-auto">
         <article
                 class="flex-1 max-w-4xl mx-auto py-5 lg:py-10 px-5 lg:px-20 prose lg:prose-md prose-a:text-primary prose-a:no-underline">
             {{ obj.content | safe }}
