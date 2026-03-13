@@ -21,11 +21,46 @@
         </a>
     </div>
     <div class="navbar-end">
-        {% if section and section.translations %}
-        {% for t in section.translations %}
-        <a href="{{ t.permalink }}">{{ t.lang }}</a>
-        {% endfor %}
-        {% endif %}
+        <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="flex items-center gap-1 cursor-pointer hover:text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-80" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m5 8 6 6"/>
+                    <path d="m4 14 6-6 2-3"/>
+                    <path d="M2 5h12"/>
+                    <path d="M7 2h1"/>
+                    <path d="m22 22-5-10-5 10"/>
+                    <path d="M14 18h6"/>
+                </svg>
+                <svg class="h-3 w-3 fill-current opacity-60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+                </svg>
+            </div>
+
+            <ul tabindex="0"
+                class="dropdown-content z-60 menu p-1 shadow-xl bg-base-100 border border-base-300 rounded-lg w-28 mt-2">
+                {% for language in config.extra.languages %}
+                {# 默认语言切换，域名后加语言代码 #}
+                {% if lang == config.default_language %}
+                {% set url = current_url | replace(from=config.base_url, to=config.base_url ~ '/' ~ language.code) %}
+                {% else %}
+                {# 非默认语言切换，替换语言代码 #}
+                {% if language.code == config.default_language %}
+                {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/') %}
+                {% else %}
+                {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/' ~ language.code ~ '/') %}
+                {% endif %}
+                {% endif %}
+                <li>
+                    {% if lang == language.code %}
+                    <span class="py-2 active font-bold cursor-default">{{ language.name }}</span>
+                    {% else %}
+                    <a href="{{ url }}" class="py-2">{{ language.name }}</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </header>
 <main>

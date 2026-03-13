@@ -22,4 +22,8 @@ dark_theme = "github-dark"
 
 [extra]
 is_dev = true
+languages = [
+    { code = "en", name = "English" },
+    { code = "zh", name = "简体中文" }
+]
 versions = []
