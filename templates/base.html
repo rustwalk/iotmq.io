@@ -55,7 +55,7 @@
                     {% if lang == language.code %}
                     <span class="py-2 active font-bold cursor-default">{{ language.name }}</span>
                     {% else %}
-                    <a href="{{ url | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}"
+                    <a href="{{ url | trim_end_matches(pat='/') | safe }}"
                        class="py-2">{{ language.name }}</a>
                     {% endif %}
                 </li>
