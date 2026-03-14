@@ -1,6 +1,6 @@
 #!/bin/bash
 
-find public/docs -name "index.html" | while read -r index_file; do
+find public -path "*/docs/*/index.html" | while read -r index_file; do
     dir=$(dirname "$index_file")
     parent_dir=$(dirname "$dir")
     base_name=$(basename "$dir")
