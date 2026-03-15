@@ -4,14 +4,17 @@
 {% block content %}
 
 {% set obj = page | default(value=section) %}
+{% set version = "latest" %}
 {% set parts = obj.components %}
-{% if parts[0] == "docs" %}
-{% set version = parts[0] ~ "/" ~ parts[1] ~ "/_index.md" %}
+{% if lang == config.default_language %}
+    {% if parts | length > 1 %}{% set version = parts[1] %}{% endif %}
+    {% set version_path = "docs/" ~ version ~ "/_index.md" %}
 {% else %}
-{% set version = parts[1] ~ "/" ~ parts[2] ~ "/_index.md" %}
+    {% if parts | length > 2 %}{% set version = parts[2] %}{% endif %}
+    {% set version_path = "docs/" ~ version ~ "/_index." ~ lang ~ ".md" %}
 {% endif %}
-{% set root = get_section(path=version, lang = obj.lang) %}
 
+{% set root = get_section(path=version_path) %}
 <div class="flex h-screen overflow-hidden">
     <aside class="hidden lg:block w-60 px-5 pt-16 shrink-0 overflow-y-auto border-r border-base-content/5 bg-base-300/50">
         <ul class="menu w-full">
@@ -21,25 +24,25 @@
                     {{ root.title }}
                 </a>
             </li>
-            {{ sidebar::render(path=version, current=obj.permalink, lang = obj.lang) }}
+            {{ sidebar::render(path=version_path, current=obj.permalink) }}
         </ul>
     </aside>
+
     <div class="flex flex-1 mt-12 overflow-y-auto">
         <article
                 class="flex-1 w-full max-w-4xl mx-auto px-5 lg:px-20 pt-5 lg:pt-10 prose lg:prose-md prose-a:text-primary prose-a:no-underline">
             {{ obj.content | safe }}
             <div class="h-5 lg:h-10"></div>
         </article>
+
+        {# TOC目录 #}
         {% if obj.toc | length > 1 %}
         <aside class="hidden xl:block w-64 sticky top-20 h-fit py-8">
             <ul class="text-[14px] border-l border-base-content/10 pl-4">
-                <li class="uppercase text-base-content/80 font-bold py-2">{{ trans(key="toc",
-                    lang=obj.lang) }}
-                </li>
+                <li class="uppercase text-base-content/80 font-bold py-2">{{ trans(key="toc", lang=obj.lang) }}</li>
                 {% for t1 in obj.toc %}
                 <li class="py-2 text-base-content/60">
-                    <a href="#{{ t1.id | safe }}" class="toc-link pl-0 block hover:text-primary">{{ t1.title
-                        }}</a>
+                    <a href="#{{ t1.id | safe }}" class="toc-link pl-0 block hover:text-primary">{{ t1.title }}</a>
                 </li>
                 {% endfor %}
             </ul>

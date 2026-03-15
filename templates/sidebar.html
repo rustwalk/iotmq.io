@@ -1,5 +1,5 @@
-{% macro render(path, current, lang, level=1) %}
-{% set section = get_section(path=path, lang=lang) %}
+{% macro render(path, current, level=1) %}
+{% set section = get_section(path=path) %}
 
 {% for page in section.pages %}
 <li>
@@ -11,7 +11,7 @@
 {% endfor %}
 
 {% for subpath in section.subsections %}
-{% set subsection = get_section(path=subpath, lang=lang) %}
+{% set subsection = get_section(path=subpath) %}
 <li class="mt-5 first:mt-0 pt-2 border-t border-base-content/5">
     {% if subsection.content | length > 0 %}
     <a href="{{ subsection.permalink | trim_end_matches(pat='/') | safe }}{% if not config.extra.is_dev %}.html{% endif %}"
@@ -22,7 +22,7 @@
     <span class="pl-0 pointer-events-none font-medium">{{ subsection.title }}</span>
     {% endif %}
     <ul class="ml-1 pl-3">
-        {{ self::render(path=subpath, current=current, lang=lang, level=level+1) }}
+        {{ self::render(path=subpath, current=current, level=level+1) }}
     </ul>
 </li>
 {% endfor %}

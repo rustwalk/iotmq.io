@@ -1,6 +1,6 @@
 +++
-title = "IoTMQ中文概述"
+title = "IoTMQ 概述"
 template = "page.html"
 +++
 
-## IoTMQ中文概述
+## IoTMQ 概述

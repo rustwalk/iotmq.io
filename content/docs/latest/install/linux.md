@@ -1,5 +1,5 @@
 +++
-title = "Linux 安装 IoTMQ"
+title = "Linux Install IoTMQ"
 +++
 
-# Linux安装IoTMQ
+# Linux Install IoTMQ

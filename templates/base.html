@@ -37,7 +37,7 @@
                 </svg>
             </div>
             <ul tabindex="0"
-                class="dropdown-content z-60 menu p-1 shadow-xl bg-base-100 border border-base-300 rounded-lg w-128 mt-2">
+                class="dropdown-content z-60 menu p-1 shadow-xl bg-base-100 border border-base-300 rounded-lg w-max mt-2">
                 {% for language in config.extra.languages %}
                 {# 默认语言切换，域名后加语言代码 #}
                 {% if lang == config.default_language %}
@@ -50,13 +50,11 @@
                 {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/' ~ language.code ~ '/') %}
                 {% endif %}
                 {% endif %}
-                <li>{{ url }}</li>
                 <li>
                     {% if lang == language.code %}
                     <span class="py-2 active font-bold cursor-default">{{ language.name }}</span>
                     {% else %}
-                    <a href="{{ url | safe }}"
-                       class="py-2">{{ language.name }}</a>
+                    <a href="{{ url | safe }}" class="py-2">{{ language.name }}</a>
                     {% endif %}
                 </li>
                 {% endfor %}
