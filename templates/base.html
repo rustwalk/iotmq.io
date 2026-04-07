@@ -41,20 +41,20 @@
                 {% for language in config.extra.languages %}
                 {# 默认语言切换，域名后加语言代码 #}
                 {% if lang == config.default_language %}
-                {% set url = current_url | replace(from=config.base_url, to=config.base_url ~ '/' ~ language.code) %}
+                    {% set url = current_url | replace(from=config.base_url, to=config.base_url ~ '/' ~ language.code) %}
                 {% else %}
                 {# 非默认语言切换，替换语言代码 #}
-                {% if language.code == config.default_language %}
-                {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/') %}
-                {% else %}
-                {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/' ~ language.code ~ '/') %}
-                {% endif %}
+                    {% if language.code == config.default_language %}
+                        {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/') %}
+                    {% else %}
+                        {% set url = current_url | replace(from='/' ~ lang ~ '/', to='/' ~ language.code ~ '/') %}
+                    {% endif %}
                 {% endif %}
                 <li>
                     {% if lang == language.code %}
                     <span class="py-2 active font-bold cursor-default">{{ language.name }}</span>
                     {% else %}
-                    <a href="{{ url | safe }}" class="py-2">{{ language.name }}</a>
+                    <a href="{{ url | trim_end_matches(pat='/') | safe }}" class="py-2">{{ language.name }}</a>
                     {% endif %}
                 </li>
                 {% endfor %}
