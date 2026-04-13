@@ -27,7 +27,7 @@ jobs:
 
       - name: build
         run: |
-          sed -i 's/is_dev = true/is_dev = false/g' config.toml
+          sed -i 's/is_dev = true/is_dev = false/g' zola.toml
           zola build
           #bash ./html.sh
 
