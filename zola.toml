@@ -12,9 +12,11 @@ build_search_index = true
 
 [languages.zh.translations]
 toc = "本页目录"
+get_started = "快速上手"
 
 [languages.en.translations]
 toc = "on this page"
+get_started = "Get Started"
 
 [markdown.highlighting]
 light_theme = "github-light"
